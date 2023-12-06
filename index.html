@@ -49,16 +49,6 @@
                     <!--Contatti:
                             Foto/Nome/ultimo messaggio XnContatti
                     -->
-                    <div class="chat" v-for="(chat, index) in contacts" :class="index == activeIndex ? 'active' : ''" @click="changeChat(index)">
-                        <div class="imgWrapper">
-                            <img :src="chat.avatar" :alt="chat.name + ' \'s avatar'">
-                        </div>
-                        <div class="info">
-                            <p class="chatName">{{ chat.name }}</p>
-                            <p class="lastMessage">{{ contacts[index].messages[contacts[index].messages.length - 1].message }}</p>
-                        </div>
-                        <div class="timeLastMesagge">{{ getMessageTime(contacts[index].messages[contacts[index].messages.length - 1].date) }}</div>
-                    </div>
                 </div>
             </section>
             <section class="conversation-container flex flex-column">
