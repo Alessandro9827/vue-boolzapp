@@ -11,49 +11,43 @@
 </head>
 <body>
     <div id="app">
-        <div class="main-container">
-            <div class="conctats-container">
-                <header class="user-container">
-                    <div class="user-info">
-                        <img src="./img/avatar_3.jpg" alt="user img">
-                        <span>Alessandro</span>
-                    </div>
-                    <div class="icon-container">
-                        <i class="fa-solid fa-circle-notch"></i>
-                        <i class="fa-solid fa-message"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-                </header>
-                <main>
-                    <div class="notify"></div>
-                    <div class="search-bar"></div>
-                    <div class="conctats"></div>
-                </main>
-            </div>
-            <div class="messages-container">
-                <header class="user-container">
-                    <div class="user-info">
-                        <div class="user-img">
-                            <img src="./img/avatar_1.jpg" alt="friend user img">
-                        </div>
-                        <div class="user-name">
-                            <span>Sofia</span>
-                            <span>ultimo accesso alle...</span>
-                        </div>
-                    </div>
-                    <div class="icon-info">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <i class="fa-solid fa-paperclip"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-                </header>
-                <main>
-                    
-                </main>
-            </div>
-        </div>
-        <!--Inserire qui-->
+        <main class="flex">
+            <section class="userbar flex  flex-column">
+                <div class="user-profile">
+                    <!--Foto/Nome--Icone-->
+                </div>
+                <div class="notifications">
+                    <!--Icona/2 Righe di testo-->
+                </div>
+                <div class="searchbar">
+                    <!--Tasto cerca/Barra di ricerca-->
+                </div>
+                <div class="contacts">
+                    <!-- TODO: contacts list will show up here -->
+                    <!--Contatti:
+                            Foto/Nome/ultimo messaggio XnContatti
+                    -->
+                </div>
+            </section>
+            <section class="conversation-container flex flex-column">
+                <div class="user-profile">
+                    <!--Foto profilo amico/nome/ultimo accesso---3 Icone-->
+                </div>
+                <div class="messages clearfix">
+                    <article class="message received">
+                        <!--Messaggio Ricevuto-->
+                    </article>
+                    <article class="message sent">
+                        <!--Messaggio Inviato-->
+                    </article>
+                </div>
+                <div class="message-input">
+                    <!--Icona emoji/-barra input/Icone microfono-->
+                </div>
+            </section>
+        </main>
     </div>
+    
     <!--Link Js-->
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="./js/script.js"></script>
