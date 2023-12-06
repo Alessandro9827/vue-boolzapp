@@ -54,7 +54,7 @@ section div.user-profile{
     margin: .5rem;
 }
 
-.user-profile .user-info span {
+.user-profile .user-info .name-user {
     font-size: .9rem;
 }
 
@@ -114,15 +114,71 @@ div.searchbar input {
 /*Conctacts Section*/
 
 section.userbar div.contacts{
-    height: calc(100% - 210px);
+    /*height: calc(100% - 210px);*/
     background-color: #ffffff;
 }
+/*
+<div class="contacts">
+    <div class="contacts-info-container">
+        <img src="./img/avatar_2.jpg" alt="user photo profile">
+        <div class="contacts-name-info">
+            <span class="name-contact">Francesco</span>
+            <span class="last-message">
+                Ultimo messaggio inviato
+            </span>
+        </div>
+    </div>
+</div>
+*/
+.contacts-info-container {
+    display: flex;
+    /*background-color: #E8EBEB;*/
+    padding: .8rem;
+    border-top: 1px solid lightgray;
+}
+
+.contacts-info-container img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: .8rem;
+}
+
+.contacts-info-container .contacts-name-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-info-container .contacts-name-info .name-contact {
+    font-size: .9rem;
+    margin-bottom: 5px;
+}
+
+.contacts-info-container .contacts-name-info .last-message {
+    font-size: .7rem;
+    color: gray;
+}
+
+
+
+/*contacts of chat*/
 
 main section.conversation-container{
     width: 65%;
     background-color: #eaeaea;
 }
 
+.user-info .user-name-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.last-access {
+    font-size: .6rem;
+    color: grey;
+}
+
+/*Messages section*/
 div.messages{
     height: calc(100% - 145px);
     background-image: url('../img/mine.jpg');
