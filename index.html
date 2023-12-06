@@ -15,18 +15,50 @@
             <section class="userbar flex  flex-column">
                 <div class="user-profile">
                     <!--Foto/Nome--Icone-->
+                    <div class="user-info">
+                        <img src="./img/avatar_3.jpg" alt="user photo profile">
+                        <span>Alessandro</span>
+                    </div>
+                    <div class="user-profile-icon">
+                        <i class="fa-solid fa-circle-notch icon-color"></i>
+                        <i class="fa-solid fa-message icon-color"></i>
+                        <i class="fa-solid fa-ellipsis-vertical icon-color"></i>
+                    </div>
                 </div>
                 <div class="notifications">
                     <!--Icona/2 Righe di testo-->
+                    <div class="notify-icon">
+                        <i class="fa-solid fa-bell-slash"></i>
+                    </div>
+                    <div class="notify-info">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="">Attiva notifiche desktop</a>
+                    </div>
                 </div>
                 <div class="searchbar">
                     <!--Tasto cerca/Barra di ricerca-->
+                    <div class="input-button">
+                        <button>
+                            <i class="fa-solid fa-magnifying-glass icon-color"></i>
+                        </button>
+                    </div>
+                    <input type="text" value="Cerca o inizia una nuova chat">
                 </div>
                 <div class="contacts">
                     <!-- TODO: contacts list will show up here -->
                     <!--Contatti:
                             Foto/Nome/ultimo messaggio XnContatti
                     -->
+                    <div class="chat" v-for="(chat, index) in contacts" :class="index == activeIndex ? 'active' : ''" @click="changeChat(index)">
+                        <div class="imgWrapper">
+                            <img :src="chat.avatar" :alt="chat.name + ' \'s avatar'">
+                        </div>
+                        <div class="info">
+                            <p class="chatName">{{ chat.name }}</p>
+                            <p class="lastMessage">{{ contacts[index].messages[contacts[index].messages.length - 1].message }}</p>
+                        </div>
+                        <div class="timeLastMesagge">{{ getMessageTime(contacts[index].messages[contacts[index].messages.length - 1].date) }}</div>
+                    </div>
                 </div>
             </section>
             <section class="conversation-container flex flex-column">

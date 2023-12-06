@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.icon-color {
+    color: #B1B1B1;
 }
 
 div#app{
@@ -21,6 +26,8 @@ main{
     width: 80%;
 }
 
+/*User Section*/
+
 main section.userbar{
     width: 35%;
     background-color: #ffffff;
@@ -29,17 +36,82 @@ main section.userbar{
 section div.user-profile{
     height: 70px;
     background-color: #eaeaea;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.user-profile .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile .user-info img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: .5rem;
+}
+
+.user-profile .user-info span {
+    font-size: .9rem;
+}
+
+.user-profile .user-profile-icon i {
+    margin-right: .8rem;
+}
+
+/*Notify Section*/
 
 section.userbar div.notifications{
     height: 80px;
     background-color: #8edafc;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
 }
 
+section.userbar div.notifications .notify-icon {
+    background-color: #F2FBFF;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+section.userbar div.notifications .notify-icon i {
+    padding: .6rem;
+    color: #8edafc;
+}
+
+section.userbar div.notifications .notify-info {
+    font-size: .8rem;
+    margin-left: .8rem;
+}
+
+/*SearchBar Section*/
+
 section.userbar div.searchbar{
-    height: 60px;
+    height: 50px;
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+div.searchbar .input-button button {
+    margin-right: .2rem;
+    padding: .2rem 1.5rem;
     background-color: #fafafa;
 }
+
+div.searchbar input {
+    padding: .2rem 0;
+    width: 90%;
+    color: #B1B1B1;
+}
+
+/*Conctacts Section*/
 
 section.userbar div.contacts{
     height: calc(100% - 210px);
