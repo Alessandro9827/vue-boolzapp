@@ -1,12 +1,33 @@
 //boolzapp messaggistica
 
-const { createApp } = Vue
+const { createApp } = Vue;
 
-createApp({
-    data() {
+const opzioni = {
+    data: function () {
         return {
-            activeIndex: 0,
-            newMessage: "",
+
+            notification: true,
+
+            // status del elemento input selection (dropdown in singoli messaggi)(controlla se visibile o meno dropdown)
+            selStatus: "true",
+
+            searchName: "",
+
+            // tiene traccia dell index del Contacts corrente
+            counter: 1,
+
+            // tiene traccia di counter su Nuovo messaggio
+            tracker: 1,
+            
+            // accetta valori data corrente ogni volta che viene creato nuovo messaggio
+            timeCheck: "",
+
+            // Status dell'elemento p in message controllato da selection in dropdown (data nel mio caso)
+            infoCheck: "none",
+
+            // valore message in oggetto nuovo messaggio  da legare a this.contacts(i).message nei nuovi messaggi scritti da utente
+            toSend: "",
+
             contacts: [
                 {
                     name: 'Michele',
@@ -14,17 +35,17 @@ createApp({
                     visible: true,
                     messages: [
                         {
-                            date: '10/01/2020 15:30:55',
+                            date: '8/12/2023 15:30:55',
                             message: 'Hai portato a spasso il cane?',
                             status: 'sent'
                         },
                         {
-                            date: '10/01/2020 15:50:00',
+                            date: '8/12/2023 15:50:00',
                             message: 'Ricordati di stendere i panni',
                             status: 'sent'
                         },
                         {
-                            date: '10/01/2020 16:15:22',
+                            date: '8/12/2023 16:15:22',
                             message: 'Tutto fatto!',
                             status: 'received'
                         }
@@ -172,6 +193,115 @@ createApp({
             ]
         }
     },
+    methods: {
+        
+        selectChat(i) {
 
-    methods:
-}).mount('#app')
+            this.counter = i;
+
+            // elemento dropdown parte nascosto
+            const sel = document.querySelectorAll(".msgActions");
+            sel.forEach(element => {
+                element.classList.add("invisible");
+            });
+        },
+
+        notifyAlert() {
+            this.notification = !(this.notification);
+        },
+
+        findDate() {
+            let checkpoint = new Date();
+            this.timeCheck = checkpoint.toLocaleString();   
+        },
+
+        dateToggle(i) {
+            if (this.infoCheck == i) {
+                this.infoCheck = "none";
+                
+            } else {
+                this.infoCheck = i;
+                
+            }
+            
+        },
+
+        // controlla relazione tra nome singolo contatto in contacts(array) e input in ricerca
+        searchChat() {
+            this.contacts.forEach(element => {
+
+                let Elemento = element.name.toUpperCase();
+                let Ricercato = this.searchName.toUpperCase();
+                if (Elemento.includes(Ricercato)) {
+                    element.visible = true;
+
+                } else {
+                    element.visible = false;
+                }
+
+            });
+        },
+
+        // genera risposta ok e push in messages di chat corrente
+        sendResp() {
+            this.findDate();
+            let newMessage = {
+                date: this.timeCheck,
+                message: "Ti rispondo a breve",
+                status: "received"
+
+            }; 
+            const newText = this.contacts[this.tracker].messages;
+            newText.push(newMessage);
+        },
+
+        // genera risposta da input e push in messages di chat corrente
+        addMessage() {
+            this.findDate();
+
+            let newMessage = {
+                date: this.timeCheck,
+                message: this.toSend,
+                status: "sent"
+            };
+            this.contacts[this.counter].messages.push(newMessage);
+            this.toSend = "";
+            this.tracker= this.counter;
+            // richiama sendResp con un ritardo di 2 sec
+            setTimeout(this.sendResp , 2000);
+        },
+
+        // cancella messaggio da array messaggi in chat corrente e nasconde info di messaggio corrente
+        deleteMsg(i) {
+
+            this.contacts[this.counter].messages.splice(i, 1);
+            document.querySelectorAll(".msgActions")[i].classList.add("invisible");
+            this.selStatus = "true";
+
+        },
+        // open Select input
+        openSel(i) {
+
+            const sel = document.querySelectorAll(".msgActions");
+
+
+            sel.forEach((element, index) => {
+                if (index == i && this.selStatus == "true") {
+                    element.classList.remove("invisible");
+                    this.selStatus = i;
+                } else if (index == i && this.selStatus == i) {
+                    this.selStatus = "true";
+                    element.classList.add("invisible");
+                } else if (index == i) {
+                    element.classList.remove("invisible");
+                    this.selStatus = i;
+                } else {
+                    element.classList.add("invisible");
+                }
+
+            });
+        }
+    }
+}
+
+createApp(opzioni).mount('#app')

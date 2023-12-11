@@ -25,153 +25,50 @@
                         <i class="fa-solid fa-ellipsis-vertical icon-color"></i>
                     </div>
                 </div>
+                <!--Sezione on/off notifiche-->
                 <div class="notifications">
-                    <!--Icona/2 Righe di testo-->
-                    <div class="notify-icon">
-                        <i class="fa-solid fa-bell-slash"></i>
-                    </div>
+                    <div class="notify-icon" @click="notifyAlert()">
+                        <i v-if="!notification" class="fa-solid fa-bell-slash notify "></i>
+                        <i v-if="notification" class="fa-solid fa-bell notify"></i>
+                    </div>    
                     <div class="notify-info">
-                        <p>Ricevi notifiche di nuovi messaggi</p>
-                        <a href="">Attiva notifiche desktop</a>
+                            <h4>Ricevi notifiche di nuovi messaggi</h4>
+                            <p v-if="notification">Attiva notifiche desktop</p>
+                            <p v-if="!notification">Disattiva notifiche desktop</p>
                     </div>
                 </div>
+                <!--Tasto cerca/Barra di ricerca-->
                 <div class="searchbar">
-                    <!--Tasto cerca/Barra di ricerca-->
                     <div class="input-button">
                         <button>
                             <i class="fa-solid fa-magnifying-glass icon-color"></i>
                         </button>
                     </div>
-                    <input type="text" value="Cerca o inizia una nuova chat">
+                    <input v-model="searchName" class="searchInput" @keyup="searchChat" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
                 <div class="contacts">
-                    <div class="contacts-info-container">
-                        <img src="./img/avatar_2.jpg" alt="user photo profile">
-                        <div class="contacts-name-info">
-                            <span class="name-contact">Francesco</span>
-                            <span class="last-message">
-                                Ultimo messaggio inviato
-                            </span>
+                        <div v-for="(person ,i) in contacts " @click="selectChat(i)" class="contactCard contacts-info-container"
+                            :class="{activeCard: counter == i, invisible: person.visible == false}">
+                            <img :src="person.avatar" alt="">
+
+                            <div class="contactData flexStart contacts-name-info">
+                                <span class="name-contact">{{person.name}}</span>
+                                <span class="last-message" v-if="person.messages.length">{{person.messages[(person.messages.length) - 1].message}}</span>
+                            </div>
+                            <!--
+                                <h6 v-if="person.messages.length" class="dateUp">{{person.messages[(person.messages.length) - 1].date}}</h6>
+                            -->
                         </div>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
-                </div>
-                <div class="contacts-info-container">
-                    <img src="./img/avatar_2.jpg" alt="user photo profile">
-                    <div class="contacts-name-info">
-                        <span class="name-contact">Francesco</span>
-                        <span class="last-message">
-                            Ultimo messaggio inviato
-                        </span>
-                    </div>
                 </div>
             </section>
             <section class="conversation-container flex flex-column">
                 <div class="user-profile">
                         <div class="user-info">
-                            <img src="./img/avatar_1.jpg" alt="user photo profile">
+                            <img :src="contacts[counter].avatar" alt="">
                             <div class="user-name-info">
-                                <span class="name-user">Francesco</span>
-                                <span class="last-access">
-                                    Ultimo accesso oggi alle 12.00
+                                <span class="name-user">{{contacts[counter].name}}</span>
+                                <span class="last-access" v-if="contacts[counter].messages.length">
+                                    ultimo messaggio: {{contacts[counter].messages[(contacts[counter].messages.length)-1].date}}
                                 </span>
                             </div>
                         </div>
@@ -181,16 +78,28 @@
                             <i class="fa-solid fa-ellipsis-vertical icon-color"></i>
                         </div>
                 </div>
-                <div class="messages clearfix">
-                    <article class="message received">
-                        <!--Messaggio Ricevuto-->
-                    </article>
-                    <article class="message sent">
-                        <!--Messaggio Inviato-->
-                    </article>
+                <div class="message-room">
+                    <div v-for="(texts, i) in contacts[counter].messages" class="message">
+                        <div :class="texts.status == 'received' ? 'userMessage' : 'contactMessage' ">
+
+                            <p v-if="texts.message.length">{{texts.message}}</p>
+
+                            <p class="dateMsg" v-if="infoCheck == i">{{texts.date}}</p>
+
+                            <i @click="openSel(i)" class="fa-solid fa-ellipsis-vertical icon"></i>
+
+                            <div class="msgActions invisible ">
+                                <h6 @click="dateToggle(i)">Message info</h6>
+    
+                                <h6 @click="deleteMsg(i)">Delete message</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="message-input">
-                    <!--Icona emoji/-barra input/Icone microfono-->
+                    <i class="fa-solid fa-face-smile icon icon-color"></i>
+                    <input v-model="toSend" @keyup.enter="addMessage" class="messageInput" type="text" placeholder="Scrivi un messaggio...">
+                    <i class="fa-solid fa-microphone icon icon-color"></i>
                 </div>
             </section>
         </main>

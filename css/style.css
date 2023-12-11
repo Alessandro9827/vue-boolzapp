@@ -9,6 +9,10 @@
     color: #B1B1B1;
 }
 
+.icon-color:hover {
+    color: #8b8b8b;
+}
+
 div#app{
     height: 100vh;
     width: 100%;
@@ -64,7 +68,7 @@ section div.user-profile{
 
 /*Notify Section*/
 
-section.userbar div.notifications{
+div.notifications{
     height: 80px;
     background-color: #8edafc;
     display: flex;
@@ -72,19 +76,24 @@ section.userbar div.notifications{
     padding: 1rem;
 }
 
-section.userbar div.notifications .notify-icon {
+div.notifications .notify-icon {
     background-color: #F2FBFF;
     height: 40px;
     width: 40px;
     border-radius: 50%;
 }
 
-section.userbar div.notifications .notify-icon i {
+div.notifications .notify-icon i.fa-bell {
+    padding: .75rem;
+    color: #8edafc;
+}
+
+div.notifications .notify-icon i.fa-bell-slash {
     padding: .6rem;
     color: #8edafc;
 }
 
-section.userbar div.notifications .notify-info {
+div.notifications .notify-info {
     font-size: .8rem;
     margin-left: .8rem;
 }
@@ -114,27 +123,20 @@ div.searchbar input {
 /*Conctacts Section*/
 
 section.userbar div.contacts{
-    /*height: calc(100% - 210px);*/
+    height: calc(100% - 210px);
+    overflow: auto;
     background-color: #ffffff;
 }
-/*
-<div class="contacts">
-    <div class="contacts-info-container">
-        <img src="./img/avatar_2.jpg" alt="user photo profile">
-        <div class="contacts-name-info">
-            <span class="name-contact">Francesco</span>
-            <span class="last-message">
-                Ultimo messaggio inviato
-            </span>
-        </div>
-    </div>
-</div>
-*/
+
 .contacts-info-container {
     display: flex;
     /*background-color: #E8EBEB;*/
     padding: .8rem;
     border-top: 1px solid lightgray;
+}
+
+.contacts-info-container:last-child {
+    border-bottom: 1px solid lightgray;
 }
 
 .contacts-info-container img {
@@ -150,12 +152,12 @@ section.userbar div.contacts{
 }
 
 .contacts-info-container .contacts-name-info .name-contact {
-    font-size: .9rem;
+    font-size: 1rem;
     margin-bottom: 5px;
 }
 
-.contacts-info-container .contacts-name-info .last-message {
-    font-size: .7rem;
+.contacts-name-info .last-message {
+    font-size: .8rem;
     color: gray;
 }
 
@@ -179,35 +181,105 @@ main section.conversation-container{
 }
 
 /*Messages section*/
-div.messages{
+
+div.message-room{
     height: calc(100% - 145px);
+    overflow: auto;
     background-image: url('../img/mine.jpg');
-    padding: 2rem;
 }
 
-div.messages > article.message{
-    padding: 1rem 1.25rem;
-    border-radius: 1rem;
-    margin: 0 2rem .8rem 2rem;
-    background-color: #8edafc;
-    clear: both;
+.message {
+    width: 100%;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem auto;
 }
 
-div.messages > article.message.received{
-    float: left;
+.message p {
+    width: calc(100% - 5rem);
+}
+
+.userMessage {
+    width: 30%;
+    min-height: 3rem;
     background-color: #ffffff;
-    margin-right: 5rem;
+    border-radius: 0.6rem;
+    margin-left: 4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+
 }
 
-div.messages > article.message.sent{
-    float: right;
+.contactMessage {
+    width: 30%;
+    min-height: 3rem;
     background-color: #d5f9ba;
-    margin-left: 5rem;
+    border-radius: 0.6rem;
+    margin-left: auto;
+    margin-right: 4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
 }
+
+.msgActions {
+    height: 60px;
+    width: 95px;
+    color: #838383;
+    font-size: 1rem;
+    background-color: #ffffff;
+    position: absolute;
+    left: 150px;
+    top: 50px;
+    padding:  1rem .4rem;
+    border-radius: 10px;
+    /*shadow*/
+    box-shadow: 3px 2px 17px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 3px 2px 17px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 2px 17px -8px rgba(0, 0, 0, 0.75);
+}
+
+.dateMsg{
+    color: #838383;
+    font-size: 0.5rem;
+}
+
+.message .icon{
+    width: 1.5rem;
+    padding: auto 0;
+    text-align: center;
+    margin:0;
+}
+
+.invisible {
+    display: none;
+}
+
+/*input mesaggi*/
 
 main section.conversation-container div.message-input{
     height: 75px;
     background-color: #f3eeea;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.messageInput {
+    width: 85%;
+    height: 2rem;
 }
 
 .flex{
@@ -218,8 +290,3 @@ main section.conversation-container div.message-input{
     flex-direction: column;
 }
 
-.clearflix::after{
-    display: block;
-    clear: both;
-    content:'';
-}
